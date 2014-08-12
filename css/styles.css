@@ -1,0 +1,15 @@
+#adswsc_block  {
+ 	margin: 1px; 
+}
+
+#adswsc_counter {
+  border: 3px inset white;
+  border-radius: 3px;
+}
+
+#adswsc_countertext {
+	font-size: large; 
+	font-weight: bold; 
+	font-style: normal;
+}
+
