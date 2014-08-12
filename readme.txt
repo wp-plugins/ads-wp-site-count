@@ -22,10 +22,10 @@ Display the counter as dynamic image or text on widget or blog.
 You can set many options for hit and cleanup. 
 This plu-in support the German and/or English language.
 
-Dieses Plugin zeige einen graphischen Zähler mit der anzahl zugriffe auf Ihre Seite. 
-Der Zähler erscheint als dynamische Bild oder als Text in Ihrer Seitenbar oder Blog.
-Sie können diverse Optionen einstellen.
-Das Plug-In ist auf Deutsch und/oder Englisch verfügbar
+Dieses Plugin zeige einen graphischen ZÃ¤hler mit der anzahl zugriffe auf Ihre Seite. 
+Der ZÃ¤hler erscheint als dynamische Bild oder als Text in Ihrer Seitenbar oder Blog.
+Sie kÃ¶nnen diverse Optionen einstellen.
+Das Plug-In ist auf Deutsch und/oder Englisch verfÃ¼gbar
 
 == Installation ==
 1. Upload Folder `ads_wpsitecount` to the `/wp-content/plugins/` directory
@@ -93,10 +93,10 @@ Save Settings as standard
 
 == Changelog ==
 = 1.0.0 =
-*Start of the plugin
+* Start of the plugin
 
 = 1.0.1 = 
-*many corrections, counter, text
+* many corrections, counter, text
 
 = 1.0.2 = 
-*add small statistic to display page count
+* add small statistic to display page count
