@@ -76,6 +76,9 @@ The image must have all digits from 0 to 9 and a empty digit inside.
 = 1.0.2 = 
 * add small statistic to display page count
 
+= 1.0.3 = 
+* added new counters
+
 == Translations ==
 * English: - default, always included
 * German: Deutsch - immer mit dabei!
