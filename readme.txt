@@ -44,30 +44,18 @@ The image must have all digits from 0 to 9 and a empty digit inside.
 
 = What args can i put on shotcode? =
 * count=2014 -> Counter value from 0-999999999
-
 * image='file.jpg' -> Image filename.jpg, look at the ./counter folder
-
 * width=165 -> Counter width, 0=empty=automatic. It is recommended to set one of these parameters width or height
-
-* height= -> Counter height, 0=empty=automatic. It is recommended to set one of these parameters width or height.
-
+* height= -> Counter height, 0=empty=automatic. It is recommended to set one of these parameters width or height
 * block='p' -> Issue with p, div or none
-
 * fill='on' -> Previous vacancy with zero filled
-
 * length=7 -> Minimum points of the counter. If the counter is greater than this will be
- adjusted automatically.  
- 
+ adjusted automatically.   
 * align='center' -> Align: left, right, center
-
 * text='on' -> Show counter as text only
-
 * before='since 2001' -> Before text
-
 * after='My counter' -> After text
-
 * docount='on' -> Turn on/off counting
-
 * save='on' -> Save Settings as standard
 
 == Screenshots ==
@@ -80,15 +68,14 @@ The image must have all digits from 0 to 9 and a empty digit inside.
 
 == Changelog ==
 = 1.0.0 =
-*Start of the plugin
+* Start of the plugin
 
 = 1.0.1 = 
-*many corrections, counter, text
+* many corrections, counter, text
 
 = 1.0.2 = 
-*add small statistic to display page count
+* add small statistic to display page count
 
 == Translations ==
-
 * English: - default, always included
 * German: Deutsch - immer mit dabei!
