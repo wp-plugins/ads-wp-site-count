@@ -8,8 +8,7 @@ Tested up to: 4.0.0 beta
 Stable tag: 1.0.2
 PHP Version: 5.2.9
 MySql Version: 5.0.91-community
-Author: ad-software
-Contributors: -
+Author: adespont
 Donate link: http://www.ad-soft.ch/wpplugins
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
