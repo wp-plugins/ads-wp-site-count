@@ -58,12 +58,13 @@ The image must have all digits from 0 to 9 and a empty digit inside.
 * docount='on' -> Turn on/off counting
 * save='on' -> Save Settings as standard
 
-= What can I use placeholder? =
+= How to use the placeholder? =
 On after or before text you can place placeholder.
 %ip -> ip number
 %image -> imagename
 %[...]% -> when user logedin 
 inside %[]% -> %sname, %dname, %fname, %lname
+change style on css please.
 
 == Screenshots ==
 1. Main screen of WP
@@ -74,26 +75,21 @@ inside %[]% -> %sname, %dname, %fname, %lname
 6. small statistic on dashboard
 
 == Changelog ==
-= 1.0.0 =
-= 2014-07-23 = 
+= 1.0.0 - 2014-07-23 = 
 * Start plug-in Wp Site Count 1.0.0
 * more new counters, translated en_EN
 
-= 1.0.1 = 
-= 2014-08-08 =
+= 1.0.1 - 2014-08-08 =
 * div. corrections, only count from one displayed counte, settings correted
 
-= 1.0.2 = 
-= 2014-08-09 =
+= 1.0.2 - 2014-08-09 =
 * Small statistic included on dashboard widget, 
 * On widget you can display random counter image on each hour/day/month.
 
-= 1.0.3 = 
-= 2014-08-13 =
+= 1.0.3 - 2014-08-13 =
 * added new counters
 
-= 1.0.4 = 
-= 2014-08-16 =
+= 1.0.4 - 2014-08-16 =
 * correction on readme text
 * added startrek counter, klingon, romulan, vulcan, added counter flipping-numbers 
 * placeholder for after and before text, %ip, %image, %[.%sname,%dname,%fname,%lname.]%
