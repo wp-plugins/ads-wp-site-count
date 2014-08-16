@@ -1,8 +1,9 @@
 <?php
-/**
- * handles the settings for the WpSiteCount plugin
- * Date : 2014/08/09 12:45 
- */
+/*
+ handles the settings for the WpSiteCount plugin
+ Date : 2014/08/15
+*/
+
 defined('ABSPATH') OR exit;
 
 if ( WP_DEBUG ) error_reporting(-1);

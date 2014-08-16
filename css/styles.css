@@ -1,5 +1,8 @@
 #adswsc_block  {
- 	margin: 1px; 
+	font-size: small; 
+	font-weight: bold; 
+	font-style: normal;
+ 	margin: 0px; 
 }
 
 #adswsc_counter {

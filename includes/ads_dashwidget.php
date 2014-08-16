@@ -1,8 +1,8 @@
 <?php
-/**
- * display widget on dashboard to show a small statistic
- * Date 2014/08/09 12:45
- */
+/*
+ display widget on dashboard to show a small statistic
+ Date : 2014/08/15
+*/
 defined('ABSPATH') OR exit;
 
 if ( WP_DEBUG ) error_reporting(-1);
@@ -40,6 +40,13 @@ class adswsc_clsDashboardWidgets {
 		if (isset($_POST['rows']))  
 			$pageRows = (absint($_POST['rows']));
 		if (isset($_POST['button_clean']))  {
+			$results = $wpdb->get_results("SELECT PageID FROM $table_name GROUP BY PageID");
+			foreach($results as $result) {
+				$link = get_permalink( $result->PageID, false ); 
+				$title = get_the_title( $result->PageID );
+				if ((empty($link) && empty($title)) || $result->PageID == 0)
+					$wpdb->query("DELETE FROM $table_name WHERE PageID=$result->PageID");
+			}
 			if (isset($_POST['clean_yes']) == true)
 				$wpdb->query("DELETE FROM $table_name");
 		}
@@ -97,9 +104,12 @@ class adswsc_clsDashboardWidgets {
 				else
 					echo '<tr>';
 				echo '<td align="center">'.$result->Total.'</td>';
-				$link  = get_permalink( $result->PageID, $leavename ); 
+				$link  = get_permalink( $result->PageID, false ); 
 				$title = get_the_title($result->PageID);
-				echo "<td><a target='_blank' href='$link'>$title</a></td>";
+				if (empty($title) || empty($link) ) 
+					echo "<td>-deleted- id:$result->PageID.</td>";
+				else 
+					echo "<td><a target='_blank' href='$link'>$title</a></td>";
 				echo '</tr>';
 			}	
 		} else 

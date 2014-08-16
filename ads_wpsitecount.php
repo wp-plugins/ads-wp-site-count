@@ -5,13 +5,13 @@ Plugin URI: www.ad-soft.ch/wpsitecount
 Author: ad-software
 Author URI: http://ad-soft.ch
 Description: Count the page hit from each ip and display a counter into widget or page.
-Version: 1.0.3
+Version: 1.0.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: Wp Site Count, ad-software, Display Site Counter
 Text Domain: ads_wpsitecount
 Domain path: /lang
-Date : 2014/08/13 19:47
+Date : 2014/08/15
 
 
 Copyright 2014  ad-software 
@@ -81,6 +81,7 @@ function adswscposts_handler($args) {
 		'after' => $options['after'],
 		'width' => $options['width'],
 		'height' => $options['height'],
+		'whunit' => $options['whunit'],
 		'block' => $options['block'],
 		'image' => $options['image'],
 		'docount' => '',
@@ -103,12 +104,16 @@ function adswscposts_function($args) {
 	$args['text'] = wp_specialchars_decode($args['text']);
 	$args['fill'] = wp_specialchars_decode($args['fill']);
 	$args['align'] = wp_specialchars_decode($args['align']);
+	$args['align'] = (in_array( $args['align'], array( 'left', 'right', 'center', '' ) ) ? $args['align'] : '' );
 	$args['length'] = absint($args['length']);
 	$args['before'] = wp_specialchars_decode($args['before']);
 	$args['after'] = wp_specialchars_decode($args['after']);
 	$args['width'] = absint($args['width']);
 	$args['height'] = absint($args['height']); 
+	$args['whunit'] = wp_specialchars_decode($args['whunit']); 
+	$args['whunit'] = (in_array( $args['whunit'], array( '%', 'px', 'pt', 'em' ) ) ? $args['whunit'] : 'px' );
 	$args['block'] = wp_specialchars_decode($args['block']); 
+	$args['block'] = (in_array( $args['block'], array( 'p', 'div', '' ) ) ? $args['block'] : '' );
 	$args['docount'] = wp_specialchars_decode($args['docount']);
 	if ($args['save'])
 	   update_option( ADS_OPTIONS_SHORTCODE , $args);
@@ -151,6 +156,7 @@ function adswsc_GetOptions($settings) {
 					'after' =>  '',
 					'width' => 165,
 					'height' => '',
+					'whunit' => 'px',
 					'block' => '',
 					'docount' => ''
 				);
@@ -238,15 +244,19 @@ function adswsc_GetViewCounter($count, $options) {
 		$output .=  "<span id='adswsc_countertext'> ".$CountData." </span>";
 		$output .=  "</a>"; 
 	} else {
-		$w = $options['width'] ? "width='".$options['width']."'" : "";
-		$h = $options['height'] ? "height='".$options['height']."'" : "";
+		if ($options['whunit'] == '%') {
+			$options['width'] = ($options['width'] > 100) ? 100 : $options['width']; 
+			$options['height'] = ($options['height'] > 100) ? 100 : $options['height']; 
+		}
+		$w = $options['width'] ? "width='".$options['width']." ".$options['whunit']."'" : "";
+		$h = $options['height'] ? "height='".$options['height']." ".$options['whunit']."'" : "";
 		//$title = " title='"._e('copyright © by ad-software', ADS_TEXT_DOMAIN)."'";
 		//$title = " ";
 		$output .=  "<a style='text-decoration: none;' target='_blank' href='".ADS_HOME_URL."' >";
 		$output .= "<img id='adswsc_counter' src='data:image/jpeg;base64,".base64_encode($CountData)."' align='middle' ".$w." ".$h."/></a>";
 	}
 	$output .= (! empty($options['block']) && ! empty($options['after'])) ? '<br>' : '';
-	$output .=  adswsc_TranslatePlaceHolder($options['after']);
+	$output .=  adswsc_TranslatePlaceHolder($options['after'], $options);
 	switch ($options['block']) {
 		case 'p': $output .=  "</p>"; break;
 		case 'div': $output .=  "</div>"; break;
@@ -258,8 +268,28 @@ function adswsc_GetViewCounter($count, $options) {
 	return $output;
 }
 
-function adswsc_TranslatePlaceHolder($Text) {
-	$Text = str_ireplace('%ip%', $_SERVER['REMOTE_ADDR'], $Text);
+function adswsc_TranslatePlaceHolder($Text, $options) {
+	$Text = str_ireplace('%ip', $_SERVER['REMOTE_ADDR'], $Text);
+	$Text = str_ireplace('%image', preg_replace("/\.[^.]+$/", "", $options['image']), $Text);
+	$Text = str_ireplace('\n', '<br>', $Text);
+	$posS = strpos($Text, '%[');
+	$posE = strpos($Text, ']%');
+	$len = ($posE  - $posS - 2);
+	if ($posS !== false && $len > 0){
+		$temp = substr($Text, $posS + 2, $len);
+		$Text = str_ireplace('%['.$temp.']%', '%*%', $Text);
+		if(is_user_logged_in()) {
+			global $current_user;
+			get_currentuserinfo(); 
+			$temp = str_ireplace('%fname', $current_user->user_firstname, $temp);
+			$temp = str_ireplace('%lname', $current_user->user_lastname, $temp);
+			$temp = str_ireplace('%dname', $current_user->display_name, $temp);
+			$temp = str_ireplace('%sname', $current_user->user_login, $temp);
+		}
+		else
+		 $temp = '';
+		$Text = str_ireplace('%*%', $temp, $Text);
+	}
 	return $Text;
 }
 
@@ -353,25 +383,27 @@ function adswsc_CheckHit($ip, $crawlers) {
 
 function adswsc_CountPage($ip) {
 	global $wpdb;
-	$general = adswsc_GetOptions( ADS_OPTIONS_GENERAL );
-	$table_name = $wpdb->prefix.ADS_PAGEFILE;
-	$format = array ('%d','%s','%d','%d');
 	$pageID = get_the_ID();
-	$DATA = array ('PageID' => $pageID, 'IP' => $ip, 'Time' => time(), 'Count'=> 1 );
-	$result = $wpdb->get_results("SELECT PageID,IP,Time,Count FROM $table_name where IP='".$ip."' AND PageID=".$pageID);
-	if (!$result)
-		$wpdb->insert( $table_name, $DATA, $format );
-	else { // Get IP Data last hit
-		$DATA['IP'] = $result[0]->IP;
-		$DATA['Time'] = $result[0]->Time;
-		$DATA['Count'] = $result[0]->Count;
-	}
-	//Update only after 30 sec again. 
-	if ((time() - $DATA['Time']) > $general['PageTime'])
-	{
-		$DATA['Time'] = time();
-		$DATA['Count']++;  
-		$wpdb->update($table_name, $DATA, array('PageID' => $pageID, 'IP' => $ip), $format, array('%d','%s'));
+	if ($pageID > 0) {
+		$general = adswsc_GetOptions( ADS_OPTIONS_GENERAL );
+		$table_name = $wpdb->prefix.ADS_PAGEFILE;
+		$format = array ('%d','%s','%d','%d');
+		$DATA = array ('PageID' => $pageID, 'IP' => $ip, 'Time' => time(), 'Count'=> 1 );
+		$result = $wpdb->get_results("SELECT PageID,IP,Time,Count FROM $table_name where IP='".$ip."' AND PageID=".$pageID);
+		if (!$result)
+			$wpdb->insert( $table_name, $DATA, $format );
+		else { // Get IP Data last hit
+			$DATA['IP'] = $result[0]->IP;
+			$DATA['Time'] = $result[0]->Time;
+			$DATA['Count'] = $result[0]->Count;
+		}
+		//Update only after 30 sec again. 
+		if ((time() - $DATA['Time']) > $general['PageTime'])
+		{
+			$DATA['Time'] = time();
+			$DATA['Count']++;  
+			$wpdb->update($table_name, $DATA, array('PageID' => $pageID, 'IP' => $ip), $format, array('%d','%s'));
+		}
 	}
 }
 
@@ -448,6 +480,13 @@ function adswsc_DbInstall () {
 	}
 
 }
+
+function deletePagePost( $postid ){
+	global $wpdb; // delete post/page id to, on adsPage table
+	$table_name = $wpdb->prefix.ADS_PAGEFILE;
+	$result = $wpdb->query("DELETE FROM $table_name where PageID=$postid");
+}
+
 function adswsc_Deactivation(){
 }
 
@@ -479,10 +518,11 @@ function adswsc_Loaded() {
 	//
 }
 
-add_action("init", "adswsc_Init");
-add_action("plugins_loaded", "adswsc_Loaded");
+add_action('init', 'adswsc_Init');
+add_action('plugins_loaded', 'adswsc_Loaded');
 add_action('wp_print_styles', 'adswsc_AddStylesheet');
 add_action('admin_print_styles', 'adswsc_AddStylesheet');
+add_action('before_delete_post', 'deletePagePost');
 
 register_deactivation_hook( __FILE__, 'adswsc_Deactivation' );
 register_uninstall_hook( __FILE__, 'adswsc_Uninstall' );

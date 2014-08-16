@@ -1,8 +1,9 @@
 <?php
-/**
- * Widget for the WpSiteCount plugin
- * Date : 2014/08/09 12:45
- */ 
+/*
+ Widget for the WpSiteCount plugin
+ Date : 2014/08/15
+*/
+
 defined('ABSPATH') OR exit;
 
 if ( WP_DEBUG ) error_reporting(-1);
@@ -33,6 +34,7 @@ class adswsc_clsWidget extends WP_Widget {
 		$options['after'] = apply_filters( 'widget_after', $instance['after'] );
 		$options['width'] = apply_filters( 'widget_width', $instance['width'] );
 		$options['height'] = apply_filters( 'widget_height', $instance['height'] );
+		$options['whunit'] = apply_filters( 'widget_whunit', $instance['whunit'] );
 		$options['image'] = apply_filters( 'widget_image', $instance['image'] );
 		$options['align'] = apply_filters( 'widget_align', $instance['align'] );
 		$options['length'] = apply_filters( 'widget_before', $instance['length'] );
@@ -113,11 +115,13 @@ class adswsc_clsWidget extends WP_Widget {
 		$FILES = glob($Directory);
 		if (sizeof($FILES) > 0)
 			$default_file = basename($FILES[0]);
-		$title = isset( $instance[ 'title' ] ) ? $instance[ 'title' ] : __('Site counter', ADS_TEXT_DOMAIN);
-		$before = isset( $instance[ 'before' ] ) ? $instance[ 'before' ] : '';
-		$after = isset( $instance[ 'after' ] ) ? $instance[ 'after' ] : '';
+		$title = isset( $instance[ 'title' ] ) ? $instance[ 'title' ] : __('Visitor counter', ADS_TEXT_DOMAIN);
+		$before = isset( $instance[ 'before' ] ) ? $instance[ 'before' ] : __('Visits since 2014', ADS_TEXT_DOMAIN);
+		$after = isset( $instance[ 'after' ] ) ? $instance[ 'after' ] : '%['.__('Welcome %dname', ADS_TEXT_DOMAIN).'\n]%'.
+																			__('Your IP: %ip', ADS_TEXT_DOMAIN);
 		$width = isset( $instance[ 'width' ] ) ? $instance[ 'width' ] : 180;
 		$height = isset( $instance[ 'height' ] ) ? $instance[ 'height' ] : '';
+		$whunit = isset( $instance[ 'whunit' ] ) ? $instance[ 'whunit' ] : 'px';
 		$image = isset( $instance[ 'image' ] ) ? $instance[ 'image' ] : $default_file;
 		$align = isset( $instance[ 'align' ] ) ? $instance[ 'align' ] : 'center';
 		$length = isset( $instance[ 'length' ] ) ? $instance[ 'length' ] : 7;
@@ -133,6 +137,7 @@ class adswsc_clsWidget extends WP_Widget {
 			'after' => $after,
 			'width' => $width,
 			'height' => $height,
+			'whunit' => $whunit,
 			'image' => $image,
 			'align' => $align,
 			'length' => $length,
@@ -149,22 +154,35 @@ class adswsc_clsWidget extends WP_Widget {
 		echo '<label for="'.$this->get_field_id( 'title' ).'">'.__('Title text', ADS_TEXT_DOMAIN).'</label><br>';
 		echo '<input type="text" class="widefat" id="'.$this->get_field_id( 'title' ).'" name="'.$this->get_field_name( 'title' ).'" value="'.esc_attr( $title ).'" />';
 		echo '</p>';
+		
 		// before
 		echo '<p>';
-		echo '<label for="'.$this->get_field_id( 'before' ).'">'.__('Text before / after counter', ADS_TEXT_DOMAIN).'</label><br>';
-		echo '<div style="white-space:nowrap;">';
-		echo '<input type="text" style="width: 49%" maxlength="30" class="widefat" id="'.$this->get_field_id( 'before' ).'" name="'.$this->get_field_name( 'before' ).'" value="'.esc_attr( $before ).'" />&nbsp';
-		echo '<input type="text" style="width: 50%" maxlength="30" class="widefat" id="'.$this->get_field_id( 'after' ).'" name="'.$this->get_field_name( 'after' ).'" value="'.esc_attr( $after ).'" />';
-		echo '</div>';
+		echo '<label for="'.$this->get_field_id( 'before' ).'">'.__('Text before counter', ADS_TEXT_DOMAIN).'</label><br>';
+		echo '<input type="text" maxlength="50" class="widefat" id="'.$this->get_field_id( 'before' ).'" name="'.$this->get_field_name( 'before' ).'" value="'.esc_attr( $before ).'" />';
 		echo '</p>';
+
+		// after
+		echo '<p>';
+		echo '<label for="'.$this->get_field_id( 'before' ).'">'.__('Text after counter', ADS_TEXT_DOMAIN).'</label><br>';
+		echo '<input type="text" maxlength="50" class="widefat" id="'.$this->get_field_id( 'after' ).'" name="'.$this->get_field_name( 'after' ).'" value="'.esc_attr( $after ).'" />';
+		echo '</p>';
+
+		
 		// width/height
 		echo '<p>';
-		echo '<label for="'.$this->get_field_id( 'width' ).'">'.__('Counter size width / hight', ADS_TEXT_DOMAIN).'</label><br>';
-		echo '<div style="white-space:nowrap;">';
-		echo '<input type="text" style="width: 49%" maxlength="3" class="widefat" id="'.$this->get_field_id( 'width' ).'" name="'.$this->get_field_name( 'width' ).'" value="'.esc_attr( $width ).'"/>&nbsp';
-		echo '<input type="text" style="width: 50%"  maxlength="3" class="widefat" id="'.$this->get_field_id( 'height' ).'" name="'.$this->get_field_name( 'height' ).'" value="'.esc_attr( $height ).'" />';
+		echo '<label for="'.$this->get_field_id( 'width' ).'">'.__('Counter size width / hight / unit', ADS_TEXT_DOMAIN).'</label><br>';
+		echo '<div style="vertical-align:middle; white-space:nowrap;">';
+		echo '<input type="text" style="width: 34%" maxlength="3" class="widefat" id="'.$this->get_field_id( 'width' ).'" name="'.$this->get_field_name( 'width' ).'" value="'.esc_attr( $width ).'"/>&nbsp';
+		echo '<input type="text" style="width: 34%"  maxlength="3" class="widefat" id="'.$this->get_field_id( 'height' ).'" name="'.$this->get_field_name( 'height' ).'" value="'.esc_attr( $height ).'" />&nbsp';
+		echo '<select  style="width: 30%" id="'.$this->get_field_id( 'whunit' ).'" name="'.$this->get_field_name( 'whunit' ).'" >';
+		echo '<option value="%" '.($whunit == '%' ? "selected" : "" ).' >%</option>';
+		echo '<option value="px" '.($whunit == 'px' ? "selected" : "" ).' >Pixels</option>';
+		echo '<option value="pt" '.($whunit == 'pt' ? "selected" : "" ).' >Points</option>';
+		echo '<option value="em" '.($whunit == 'em' ? "selected" : "" ).' >Ems</option>';
+		echo '</select>';
 		echo '</div>';
 		echo '</p>';
+		
 		// image
 		echo '<p>';
 		echo '<label for="'.$this->get_field_id( 'image' ).'">'.__('Counter image', ADS_TEXT_DOMAIN).'</label>';
@@ -178,8 +196,9 @@ class adswsc_clsWidget extends WP_Widget {
 			}
 		}  
 		echo '</select></p>';
+		
 		//Align and Length and Block
-		echo '<br><label for="'.$this->get_field_id( 'align' ).'">'.__('Counter align, length and block type', ADS_TEXT_DOMAIN).'</label><br>';
+		echo '<label for="'.$this->get_field_id( 'align' ).'">'.__('Counter align, length and block type', ADS_TEXT_DOMAIN).'</label><br>';
 		echo '<select  id="'.$this->get_field_id( 'align' ).'" name="'.$this->get_field_name( 'align' ).'" >';
 		echo '<option value="left" '.($align == 'left' ? "selected" : "" ).' >'.__('left', ADS_TEXT_DOMAIN).'</option>';
 		echo '<option value="right" '.($align == 'right' ? "selected" : "" ).' >'.__('right', ADS_TEXT_DOMAIN).'</option>';
@@ -199,15 +218,19 @@ class adswsc_clsWidget extends WP_Widget {
 
 		//fill
 		echo '<p>';
+		echo '<label for="'.$this->get_field_id( 'option' ).'">'.__('Other options', ADS_TEXT_DOMAIN).'</label><br>';
 		echo '<input value="on" type="checkbox" id="'.$this->get_field_id( 'fill' ).'" name="'.$this->get_field_name( 'fill' ).'" '.($fill == "on" ? "checked" : "" ).' />'.__('fill with zerro', ADS_TEXT_DOMAIN).'<br>';
+		
 		//text
 		echo '<input value="on" type="checkbox" id="'.$this->get_field_id( 'text' ).'" name="'.$this->get_field_name( 'text' ).'" '.($text == "on" ? "checked" : "" ).' />'.__('display as text', ADS_TEXT_DOMAIN).'<br>';
+		
 		//text
-		echo '<input value="on" type="checkbox" id="'.$this->get_field_id( 'docount' ).'" name="'.$this->get_field_name( 'docount' ).'" '.($docount == "on" ? "checked" : "" ).' />'.__('counting activated', ADS_TEXT_DOMAIN).'<br>';
+		echo '<input value="on" type="checkbox" id="'.$this->get_field_id( 'docount' ).'" name="'.$this->get_field_name( 'docount' ).'" '.($docount == "on" ? "checked" : "" ).' />'.__('counting activated', ADS_TEXT_DOMAIN);
 		echo '</p>';
+		
 		//random counter
 		echo '<p>';
-		echo '<br><label for="'.$this->get_field_id( 'randimg' ).'">'.__('Random counter selected', ADS_TEXT_DOMAIN).'</label><br>';
+		echo '<label for="'.$this->get_field_id( 'randimg' ).'">'.__('Random counter selected', ADS_TEXT_DOMAIN).'</label><br>';
 		echo '<select  id="'.$this->get_field_id( 'randimg' ).'" name="'.$this->get_field_name( 'randimg' ).'" >';
 		echo '<option value="0" '.($randimg == 0 ? "selected" : "" ).' >'.__('none', ADS_TEXT_DOMAIN).'</option>';
 		echo '<option value="1" '.($randimg == 1 ? "selected" : "" ).' >'.__('hourly', ADS_TEXT_DOMAIN).'</option>';
@@ -219,10 +242,8 @@ class adswsc_clsWidget extends WP_Widget {
 		echo '</p>';
 		//show counter
 		echo '<p>';
-		//$odlCount = $options['docount'];
 		$options['docount'] = '';
 		echo adswsc_GetViewCounter(null, $options); 
-		//$options['docount'] = $odlCount;
 		echo '</p>';
 	}
 	
@@ -234,6 +255,7 @@ class adswsc_clsWidget extends WP_Widget {
 		$instance['after'] = ( ! empty( $new_instance['after'] ) ) ? strip_tags( $new_instance['after'] ) : '';
 		$instance['width'] = ( ! empty( $new_instance['width'] ) ) ? strip_tags( $new_instance['width'] ) : '';
 		$instance['height'] = ( ! empty( $new_instance['height'] ) ) ? strip_tags( $new_instance['height'] ) : '';
+		$instance['whunit'] = ( ! empty( $new_instance['whunit'] ) ) ? strip_tags( $new_instance['whunit'] ) : '';
 		$instance['image'] = ( ! empty( $new_instance['image'] ) ) ? strip_tags( $new_instance['image'] ) : '';
 		$instance['align'] = ( ! empty( $new_instance['align'] ) ) ? strip_tags( $new_instance['align'] ) : '';
 		$instance['length'] = ( ! empty( $new_instance['length'] ) ) ? strip_tags( $new_instance['length'] ) : '';

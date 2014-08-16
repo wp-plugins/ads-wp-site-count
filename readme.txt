@@ -1,11 +1,11 @@
 === Plugin Name ===
 Plugin Name: ADS-WP SITE COUNT Plugin
-Version: 1.0.2
+Version: 1.0.4
 URI: http://www.ad-soft.ch/wpplugins
 Tags: site counter, counter widget, hit counter, graphic counter, short code site counter
 Requires at least: 3.1.0
-Tested up to: 4.0.0 beta
-Stable tag: 1.0.2
+Tested up to: 4.0.0 
+Stable tag: 1.0.4
 PHP Version: 5.2.9
 MySql Version: 5.0.91-community
 Author: adespont
@@ -27,7 +27,7 @@ Sie können diverse Optionen einstellen.
 Das Plug-In ist auf Deutsch und/oder Englisch verfügbar
 
 == Installation ==
-1. Upload Folder `ads_wpsitecount` to the `/wp-content/plugins/` directory
+1. Upload Folder `ads-wp-site-count` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Configure the Settings for cleanup IP db entrys when you need.
 4. Place Widget ADS-WpSiteCount on your sidebar
@@ -58,6 +58,13 @@ The image must have all digits from 0 to 9 and a empty digit inside.
 * docount='on' -> Turn on/off counting
 * save='on' -> Save Settings as standard
 
+= What can I use placeholder? =
+On after or before text you can place placeholder.
+%ip -> ip number
+%image -> imagename
+%[...]% -> when user logedin 
+inside %[]% -> %sname, %dname, %fname, %lname
+
 == Screenshots ==
 1. Main screen of WP
 2. Admin panel whit settings menu
@@ -68,16 +75,29 @@ The image must have all digits from 0 to 9 and a empty digit inside.
 
 == Changelog ==
 = 1.0.0 =
-* Start of the plugin
+= 2014-07-23 = 
+* Start plug-in Wp Site Count 1.0.0
+* more new counters, translated en_EN
 
 = 1.0.1 = 
-* many corrections, counter, text
+= 2014-08-08 =
+* div. corrections, only count from one displayed counte, settings correted
 
 = 1.0.2 = 
-* add small statistic to display page count
+= 2014-08-09 =
+* Small statistic included on dashboard widget, 
+* On widget you can display random counter image on each hour/day/month.
 
 = 1.0.3 = 
+= 2014-08-13 =
 * added new counters
+
+= 1.0.4 = 
+= 2014-08-16 =
+* correction on readme text
+* added startrek counter, klingon, romulan, vulcan, added counter flipping-numbers 
+* placeholder for after and before text, %ip, %image, %[.%sname,%dname,%fname,%lname.]%
+* language updated
 
 == Translations ==
 * English: - default, always included

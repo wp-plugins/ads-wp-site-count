@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: ADS-WpSiteCount v1.0.2\n"
+"Project-Id-Version: ADS-WpSiteCount v1.0.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-08-11 10:57:55+0000\n"
+"PO-Revision-Date: 2014-08-15 12:31:37+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -38,54 +38,49 @@ msgstr "ad-software"
 msgid "http://ad-soft.ch"
 msgstr "http://ad-soft.ch"
 
-#: includes/ads_widgets.php:149
+#: includes/ads_widgets.php:153
 #@ ads_wpsitecount
 msgid "Title text"
 msgstr "Titeltext"
 
-#: includes/ads_widgets.php:116
-#@ ads_wpsitecount
-msgid "Site counter"
-msgstr "Besucherzähler"
-
-#: includes/ads_widgets.php:170
+#: includes/ads_widgets.php:187
 #@ ads_wpsitecount
 msgid "Counter image"
 msgstr "Zähler Typ"
 
-#: includes/ads_widgets.php:173
+#: includes/ads_widgets.php:190
 #@ ads_wpsitecount
 msgid "Sorry, no counter image found"
 msgstr "Kein Zählerbild gefunden."
 
-#: includes/ads_widgets.php:184
+#: includes/ads_widgets.php:202
 #@ ads_wpsitecount
 msgid "left"
 msgstr "links"
 
-#: includes/ads_widgets.php:185
+#: includes/ads_widgets.php:203
 #@ ads_wpsitecount
 msgid "right"
 msgstr "rechts"
 
-#: includes/ads_widgets.php:186
+#: includes/ads_widgets.php:204
 #@ ads_wpsitecount
 msgid "center"
 msgstr "zentriert"
 
-#: includes/ads_widgets.php:202
+#: includes/ads_widgets.php:221
 #@ ads_wpsitecount
 msgid "fill with zerro"
 msgstr "mit null füllen"
 
-#: includes/ads_widgets.php:204
+#: includes/ads_widgets.php:224
 #@ ads_wpsitecount
 msgid "display as text"
 msgstr "nur als Text anzeigen"
 
-#: includes/ads_widgets.php:187
-#: includes/ads_widgets.php:197
-#: includes/ads_widgets.php:212
+#: includes/ads_widgets.php:205
+#: includes/ads_widgets.php:215
+#: includes/ads_widgets.php:234
 #@ ads_wpsitecount
 msgid "none"
 msgstr "nichts"
@@ -217,17 +212,7 @@ msgstr "Es sind Eingaben von 1 Tag bis 6 Monate erlaubt"
 msgid "Count the page hit from each ip and display a counter into widget or page."
 msgstr "Zählt die Seiten Hits jeder IP und zeigt einen grafischen Zähler auf der Sidebar oder einer Seite an."
 
-#: includes/ads_widgets.php:154
-#@ ads_wpsitecount
-msgid "Text before / after counter"
-msgstr "Text vor / nach dem Zähler"
-
-#: includes/ads_widgets.php:162
-#@ ads_wpsitecount
-msgid "Counter size width / hight"
-msgstr "Zähler Grösse, Breite / Höhe"
-
-#: includes/ads_widgets.php:182
+#: includes/ads_widgets.php:200
 #@ ads_wpsitecount
 msgid "Counter align, length and block type"
 msgstr "Zähler Ausrichtung, Stellen und Blocktyp"
@@ -242,58 +227,47 @@ msgstr "Definiert eine Komma-separierte Liste von Robot's, welche ein Zählen ve
 msgid "Example (copy & paste), white-space are removed on search:"
 msgstr "Beispiel ( kopieren & einfügen), Leerzeichen werden beim suchen entfernt."
 
-#. translators: plugin header field 'Version'
-#: ads_wpsitecount.php:0
-#@ ads_wpsitecount
-msgid "1.0.2"
-msgstr "1.0.2"
-
 #: includes/ads_dashwidget.php:29
 #@ ads_wpsitecount
 msgid "ADS-WpSiteCount - Small statistic"
 msgstr "ADS-WpSiteCount - Kleine Statistik"
 
-#: includes/ads_dashwidget.php:58
+#: includes/ads_dashwidget.php:62
 #@ ads_wpsitecount
 msgid "The table shows the number of calls for each page."
 msgstr "Diese Tabelle zeigt die Anzahl Aufrufe der Seite."
 
-#: includes/ads_dashwidget.php:59
+#: includes/ads_dashwidget.php:63
 #@ ads_wpsitecount
 msgid "Not referring page addresses will not be displayed."
 msgstr "Eine unbenutze Seite wird hier nicht angezeigt."
 
-#: includes/ads_dashwidget.php:68
+#: includes/ads_dashwidget.php:76
 #@ ads_wpsitecount
 msgid "Page"
 msgstr "Seite"
 
-#: includes/ads_dashwidget.php:71
-#@ ads_wpsitecount
-msgid "Clean Data"
-msgstr "Daten löschen"
-
-#: includes/ads_dashwidget.php:72
+#: includes/ads_dashwidget.php:110
 #@ ads_wpsitecount
 msgid "GO"
 msgstr "GO"
 
-#: includes/ads_dashwidget.php:73
+#: includes/ads_dashwidget.php:81
 #@ ads_wpsitecount
 msgid "rows&nbsp;"
 msgstr "zeilen&nbsp;"
 
-#: includes/ads_dashwidget.php:80
+#: includes/ads_dashwidget.php:88
 #@ ads_wpsitecount
 msgid "Count"
 msgstr "Zähler"
 
-#: includes/ads_dashwidget.php:81
+#: includes/ads_dashwidget.php:89
 #@ ads_wpsitecount
 msgid "page"
 msgstr "Seite"
 
-#: includes/ads_dashwidget.php:95
+#: includes/ads_dashwidget.php:106
 #@ ads_wpsitecount
 msgid "no data found"
 msgstr "keine Daten gefunden"
@@ -318,37 +292,37 @@ msgstr "Statistik ein"
 msgid "supports 30 sec. to 24 hours on page cycle"
 msgstr "Support 30 sek. bis 24 Stunden für Seitencyklus"
 
-#: includes/ads_widgets.php:206
+#: includes/ads_widgets.php:227
 #@ ads_wpsitecount
 msgid "counting activated"
 msgstr "Zählen aktiviert"
 
-#: includes/ads_widgets.php:210
+#: includes/ads_widgets.php:232
 #@ ads_wpsitecount
 msgid "Random counter selected"
 msgstr "Zufalls Zähler ein"
 
-#: includes/ads_widgets.php:213
+#: includes/ads_widgets.php:235
 #@ ads_wpsitecount
 msgid "hourly"
 msgstr "stündlich"
 
-#: includes/ads_widgets.php:214
+#: includes/ads_widgets.php:236
 #@ ads_wpsitecount
 msgid "dayli"
 msgstr "täglich"
 
-#: includes/ads_widgets.php:215
+#: includes/ads_widgets.php:237
 #@ ads_wpsitecount
 msgid "weekly"
 msgstr "wöchentlich"
 
-#: includes/ads_widgets.php:216
+#: includes/ads_widgets.php:238
 #@ ads_wpsitecount
 msgid "monthly"
 msgstr "monatlich"
 
-#: includes/ads_widgets.php:217
+#: includes/ads_widgets.php:239
 #@ ads_wpsitecount
 msgid "every minute"
 msgstr "pro Minute"
@@ -358,4 +332,62 @@ msgstr "pro Minute"
 #@ ads_wpsitecount
 msgid "www.ad-soft.ch/wpsitecount"
 msgstr "www.ad-soft.ch/wpsitecount"
+
+#. translators: plugin header field 'Version'
+#: ads_wpsitecount.php:0
+#@ ads_wpsitecount
+msgid "1.0.4"
+msgstr "1.0.4"
+
+#: includes/ads_dashwidget.php:78
+#@ ads_wpsitecount
+msgid "von"
+msgstr "from"
+
+#: includes/ads_dashwidget.php:109
+#@ ads_wpsitecount
+msgid "delete rows"
+msgstr "Zeilen löschen"
+
+#: includes/ads_widgets.php:117
+#@ ads_wpsitecount
+msgid "Visitor counter"
+msgstr "Besucher-Zähler"
+
+#: includes/ads_widgets.php:118
+#@ ads_wpsitecount
+msgid "Visits since 2014"
+msgstr "Besuche seit 2014"
+
+#: includes/ads_widgets.php:159
+#@ ads_wpsitecount
+msgid "Text before counter"
+msgstr "Ein Text vor dem Zähler"
+
+#: includes/ads_widgets.php:165
+#@ ads_wpsitecount
+msgid "Text after counter"
+msgstr "Ein Text nach dem Zähler"
+
+#: includes/ads_widgets.php:172
+#@ ads_wpsitecount
+msgid "Counter size width / hight / unit"
+msgstr "Zähler Grösse, Breite / Höhe / Einheit"
+
+#: includes/ads_widgets.php:220
+#@ ads_wpsitecount
+msgid "Other options"
+msgstr "Andere Optionen"
+
+#: includes/ads_widgets.php:119
+#, php-format
+#@ ads_wpsitecount
+msgid "Welcome %dname"
+msgstr "Hallo %dname"
+
+#: includes/ads_widgets.php:120
+#, php-format
+#@ ads_wpsitecount
+msgid "Your IP: %ip"
+msgstr "Deine IP: %ip"
 
