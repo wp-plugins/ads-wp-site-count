@@ -1,11 +1,11 @@
 === Plugin Name ===
 Plugin Name: ADS-WP SITE COUNT Plugin
-Version: 1.0.4
+Version: 1.0.5
 URI: http://www.ad-soft.ch/wpplugins
 Tags: site counter, counter widget, hit counter, graphic counter, short code site counter
 Requires at least: 3.1.0
 Tested up to: 4.0.0 
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 PHP Version: 5.2.9
 MySql Version: 5.0.91-community
 Author: adespont
@@ -62,6 +62,7 @@ The image must have all digits from 0 to 9 and a empty digit inside.
 On after or before text you can place placeholder.
 %ip -> ip number
 %image -> imagename
+%count -> counter value
 %[...]% -> when user logedin 
 inside %[]% -> %sname, %dname, %fname, %lname
 change style on css please.
@@ -94,6 +95,10 @@ change style on css please.
 * added startrek counter, klingon, romulan, vulcan, added counter flipping-numbers 
 * placeholder for after and before text, %ip, %image, %[.%sname,%dname,%fname,%lname.]%
 * language updated
+
+= 1.0.5 - 2014-08-16 =
+* correction on function after text, missing parameter
+* new placeholder %count
 
 == Translations ==
 * English: - default, always included

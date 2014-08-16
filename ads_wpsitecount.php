@@ -5,7 +5,7 @@ Plugin URI: www.ad-soft.ch/wpsitecount
 Author: ad-software
 Author URI: http://ad-soft.ch
 Description: Count the page hit from each ip and display a counter into widget or page.
-Version: 1.0.4
+Version: 1.0.5
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: Wp Site Count, ad-software, Display Site Counter
@@ -237,7 +237,7 @@ function adswsc_GetViewCounter($count, $options) {
 				$output .= '<center>';
 			break;	
 	}
-	$output .=  adswsc_TranslatePlaceHolder($options['before']);
+	$output .=  adswsc_TranslatePlaceHolder($options['before'], $options, $user_count);
 	$output .= (! empty($options['block']) && ! empty($options['before'])) ? '<br>' : '';
 	if ($options['text'] == "on") {
 		$output .=  "<a style='text-decoration: none;' target='_blank' href='".ADS_HOME_URL."' >";
@@ -256,7 +256,7 @@ function adswsc_GetViewCounter($count, $options) {
 		$output .= "<img id='adswsc_counter' src='data:image/jpeg;base64,".base64_encode($CountData)."' align='middle' ".$w." ".$h."/></a>";
 	}
 	$output .= (! empty($options['block']) && ! empty($options['after'])) ? '<br>' : '';
-	$output .=  adswsc_TranslatePlaceHolder($options['after'], $options);
+	$output .=  adswsc_TranslatePlaceHolder($options['after'], $options, $user_count);
 	switch ($options['block']) {
 		case 'p': $output .=  "</p>"; break;
 		case 'div': $output .=  "</div>"; break;
@@ -268,9 +268,10 @@ function adswsc_GetViewCounter($count, $options) {
 	return $output;
 }
 
-function adswsc_TranslatePlaceHolder($Text, $options) {
+function adswsc_TranslatePlaceHolder($Text, $options, $user_count) {
 	$Text = str_ireplace('%ip', $_SERVER['REMOTE_ADDR'], $Text);
 	$Text = str_ireplace('%image', preg_replace("/\.[^.]+$/", "", $options['image']), $Text);
+	$Text = str_ireplace('%count', $user_count, $Text);
 	$Text = str_ireplace('\n', '<br>', $Text);
 	$posS = strpos($Text, '%[');
 	$posE = strpos($Text, ']%');
