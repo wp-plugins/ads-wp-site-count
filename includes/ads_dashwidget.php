@@ -2,6 +2,7 @@
 /*
  display widget on dashboard to show a small statistic
  Date : 2014/08/15
+ //char(äöü)
 */
 defined('ABSPATH') OR exit;
 

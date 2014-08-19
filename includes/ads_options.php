@@ -2,6 +2,7 @@
 /*
  handles the settings for the WpSiteCount plugin
  Date : 2014/08/15
+ //char(äüö)
 */
 
 defined('ABSPATH') OR exit;
