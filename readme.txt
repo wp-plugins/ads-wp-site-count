@@ -71,9 +71,8 @@ change style on css please.
 1. Main screen of WP
 2. Admin panel whit settings menu
 3. wpsitecount options page
-4. Widget page
-5. wpsitecount widget options
-6. small statistic on dashboard
+4. Widget page options
+5. small statistic on dashboard
 
 == Changelog ==
 = 1.0.0 - 2014-07-23 = 
