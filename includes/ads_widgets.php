@@ -2,6 +2,7 @@
 /*
  Widget for the WpSiteCount plugin
  Date : 2014/08/15
+ ö
 */
 
 defined('ABSPATH') OR exit;
