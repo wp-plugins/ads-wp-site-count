@@ -1,8 +1,8 @@
 <?php
 /*
  Widget for the WpSiteCount plugin
- Date : 2014/08/15
- //char(äöü)
+ Date : 2014/08/26
+ Author: ad-software, André
 */
 
 defined('ABSPATH') OR exit;
@@ -42,8 +42,8 @@ class adswsc_clsWidget extends WP_Widget {
 		$options['fill'] = apply_filters( 'widget_fill', $instance['fill'] );
 		$options['text'] = apply_filters( 'widget_text', $instance['text'] );
 		$options['block'] = apply_filters( 'widget_block', $instance['block'] );
-		$options['docount'] = apply_filters( 'widget_docount', $instance['docount'] );
 		$options['randimg'] = apply_filters( 'widget_randimg', $instance['randimg'] );
+		$options['imgmaxw'] = apply_filters( 'widget_imgmaxw', $instance['imgmaxw'] );
 		echo $args['before_widget'];
 
 		switch ($options['randimg']) {
@@ -129,7 +129,7 @@ class adswsc_clsWidget extends WP_Widget {
 		$fill = isset( $instance[ 'fill' ] ) ? $instance[ 'fill' ] : '';
 		$text = isset( $instance[ 'text' ] ) ? $instance[ 'text' ] : '';
 		$block = isset( $instance[ 'block' ] ) ? $instance[ 'block' ] : 'p';
-		$docount = isset( $instance[ 'docount' ] ) ? $instance[ 'docount' ] : 'on';
+		$imgmaxw = isset( $instance[ 'imgmaxw' ] ) ? $instance[ 'imgmaxw' ] : 350;
 		$randimg = isset( $instance[ 'randimg' ] ) ? $instance[ 'randimg' ] : 'on';
         		
 		$options = array (
@@ -145,7 +145,7 @@ class adswsc_clsWidget extends WP_Widget {
 			'fill' => $fill,
 			'text' => $text,
 			'block' => $block,
-			'docount' => $docount,
+			'imgmaxw' => $imgmaxw,
 			'randimg' => $randimg,
 		);
 			
@@ -171,17 +171,22 @@ class adswsc_clsWidget extends WP_Widget {
 		
 		// width/height
 		echo '<p>';
-		echo '<label for="'.$this->get_field_id( 'width' ).'">'.__('Counter size width / hight / unit', ADS_TEXT_DOMAIN).'</label><br>';
-		echo '<div style="vertical-align:middle; white-space:nowrap;">';
-		echo '<input type="text" style="width: 34%" maxlength="3" class="widefat" id="'.$this->get_field_id( 'width' ).'" name="'.$this->get_field_name( 'width' ).'" value="'.esc_attr( $width ).'"/>&nbsp';
-		echo '<input type="text" style="width: 34%"  maxlength="3" class="widefat" id="'.$this->get_field_id( 'height' ).'" name="'.$this->get_field_name( 'height' ).'" value="'.esc_attr( $height ).'" />&nbsp';
-		echo '<select  style="width: 30%" id="'.$this->get_field_id( 'whunit' ).'" name="'.$this->get_field_name( 'whunit' ).'" >';
+		echo '<label for="'.$this->get_field_id( 'width' ).'">'.__('Dynamic Image size width / hight / unit', ADS_TEXT_DOMAIN).'</label><br>';
+		echo '<span style="vertical-align:middle; white-space:nowrap;">';
+		echo '<input style="width:20%;" type="text" maxlength="4" class="widefat" id="'.$this->get_field_id( 'width' ).'" name="'.$this->get_field_name( 'width' ).'" value="'.esc_attr( $width ).'"/>&nbsp';
+		echo '<input style="width:20%;" type="text" maxlength="3" class="widefat" id="'.$this->get_field_id( 'height' ).'" name="'.$this->get_field_name( 'height' ).'" value="'.esc_attr( $height ).'" />&nbsp';
+		echo '<select id="'.$this->get_field_id( 'whunit' ).'" name="'.$this->get_field_name( 'whunit' ).'" >';
 		echo '<option value="%" '.($whunit == '%' ? "selected" : "" ).' >%</option>';
 		echo '<option value="px" '.($whunit == 'px' ? "selected" : "" ).' >Pixels</option>';
 		echo '<option value="pt" '.($whunit == 'pt' ? "selected" : "" ).' >Points</option>';
 		echo '<option value="em" '.($whunit == 'em' ? "selected" : "" ).' >Ems</option>';
 		echo '</select>';
-		echo '</div>';
+		echo '</span>';
+		echo '</p>';
+
+		echo '<p>';
+		echo '<label for="'.$this->get_field_id( 'width' ).'">'.__('Maximal Image width on output ( 0 = fullsize)', ADS_TEXT_DOMAIN).'</label><br>';
+		echo '<input style="width:20%;" type="text"  maxlength="4" class="widefat" id="'.$this->get_field_id( 'imgmaxw' ).'" name="'.$this->get_field_name( 'imgmaxw' ).'" value="'.esc_attr( $imgmaxw ).'"/> px';
 		echo '</p>';
 		
 		// image
@@ -197,7 +202,7 @@ class adswsc_clsWidget extends WP_Widget {
 			}
 		}  
 		echo '</select></p>';
-		
+
 		//Align and Length and Block
 		echo '<label for="'.$this->get_field_id( 'align' ).'">'.__('Counter align, length and block type', ADS_TEXT_DOMAIN).'</label><br>';
 		echo '<select  id="'.$this->get_field_id( 'align' ).'" name="'.$this->get_field_name( 'align' ).'" >';
@@ -224,9 +229,6 @@ class adswsc_clsWidget extends WP_Widget {
 		
 		//text
 		echo '<input value="on" type="checkbox" id="'.$this->get_field_id( 'text' ).'" name="'.$this->get_field_name( 'text' ).'" '.($text == "on" ? "checked" : "" ).' />'.__('display as text', ADS_TEXT_DOMAIN).'<br>';
-		
-		//text
-		echo '<input value="on" type="checkbox" id="'.$this->get_field_id( 'docount' ).'" name="'.$this->get_field_name( 'docount' ).'" '.($docount == "on" ? "checked" : "" ).' />'.__('counting activated', ADS_TEXT_DOMAIN);
 		echo '</p>';
 		
 		//random counter
@@ -243,7 +245,6 @@ class adswsc_clsWidget extends WP_Widget {
 		echo '</p>';
 		//show counter
 		echo '<p>';
-		$options['docount'] = '';
 		echo adswsc_GetViewCounter(null, $options); 
 		echo '</p>';
 	}
@@ -263,8 +264,8 @@ class adswsc_clsWidget extends WP_Widget {
 		$instance['fill'] = ( ! empty( $new_instance['fill'] ) ) ? strip_tags( $new_instance['fill'] ) : '';
 		$instance['text'] = ( ! empty( $new_instance['text'] ) ) ? strip_tags( $new_instance['text'] ) : '';
 		$instance['block'] = ( ! empty( $new_instance['block'] ) ) ? strip_tags( $new_instance['block'] ) : '';
-		$instance['docount'] = ( ! empty( $new_instance['docount'] ) ) ? strip_tags( $new_instance['docount'] ) : '';
 		$instance['randimg'] = ( ! empty( $new_instance['randimg'] ) ) ? strip_tags( $new_instance['randimg'] ) : '';
+		$instance['imgmaxw'] = ( ! empty( $new_instance['imgmaxw'] ) ) ? strip_tags( $new_instance['imgmaxw'] ) : '';
 		return $instance;
 	}
 } 

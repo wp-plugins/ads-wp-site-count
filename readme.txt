@@ -1,11 +1,11 @@
 === Plugin Name ===
 Plugin Name: ADS-WP SITE COUNT Plugin
-Version: 1.0.6
+Version: 1.0.7
 URI: http://www.ad-soft.ch/wpplugins
 Tags: site counter, counter widget, hit counter, graphic counter, short code site counter
 Requires at least: 3.1.0
 Tested up to: 4.0.0 
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 PHP Version: 5.2.9
 MySql Version: 5.0.91-community
 Author: adespont
@@ -49,14 +49,13 @@ The image must have all digits from 0 to 9 and a empty digit inside.
 * height= -> Counter height, 0=empty=automatic. It is recommended to set one of these parameters width or height
 * block='p' -> Issue with p, div or none
 * fill='on' -> Previous vacancy with zero filled
-* length=7 -> Minimum points of the counter. If the counter is greater than this will be
- adjusted automatically.   
+* length=7 -> Minimum points of the counter. If the counter is greater than this will be adjusted automatically.   
 * align='center' -> Align: left, right, center
 * text='on' -> Show counter as text only
 * before='since 2001' -> Before text
 * after='My counter' -> After text
-* docount='on' -> Turn on/off counting
-* save='on' -> Save Settings as standard
+* imgmaxw=350 -> max image size px on output
+* save='on' -> save settings as standard
 
 = How to use the placeholder? =
 On after or before text you can place placeholder.
@@ -73,21 +72,22 @@ change style on css please.
 3. wpsitecount options page
 4. Widget page options
 5. small statistic on dashboard
+6. TinyMce shortcode button popup
 
 == Changelog ==
-= 1.0.0 - 2014-07-23 = 
-* Start plug-in Wp Site Count 1.0.0
-* more new counters, translated en_EN
+= 1.0.7 - 2014-08-26 =
+* optimized code
+* removed Log database, no more needed, data will be converted
+* added images max size for output and should be based on width/height. (at a small width no high resolution image is required, high-resolution images cause a longer charge time) 
+* added shortcode tinyMce button, turn on/off on settings.
+* !!! parameters changed on widget and settings, re-save after update and check output.
 
-= 1.0.1 - 2014-08-08 =
-* div. corrections, only count from one displayed counte, settings correted
+= 1.0.6 - 2014-08-19 =
+* Counter Images update, many file correction unicode.
 
-= 1.0.2 - 2014-08-09 =
-* Small statistic included on dashboard widget, 
-* On widget you can display random counter image on each hour/day/month.
-
-= 1.0.3 - 2014-08-13 =
-* added new counters
+= 1.0.5 - 2014-08-16 =
+* correction on function after text, missing parameter
+* new placeholder %count
 
 = 1.0.4 - 2014-08-16 =
 * correction on readme text
@@ -95,12 +95,19 @@ change style on css please.
 * placeholder for after and before text, %ip, %image, %[.%sname,%dname,%fname,%lname.]%
 * language updated
 
-= 1.0.5 - 2014-08-16 =
-* correction on function after text, missing parameter
-* new placeholder %count
+= 1.0.3 - 2014-08-13 =
+* added new counters
 
-= 1.0.6 - 2014-08-19 =
-* Counter Images update, many file correction unicode.
+= 1.0.2 - 2014-08-09 =
+* Small statistic included on dashboard widget, 
+* On widget you can display random counter image on each hour/day/month.
+
+= 1.0.1 - 2014-08-08 =
+* div. corrections, only count from one displayed counte, settings correted
+
+= 1.0.0 - 2014-07-23 = 
+* Start plug-in Wp Site Count 1.0.0
+* more new counters, translated en_EN
 
 == Translations ==
 * English: - default, always included
