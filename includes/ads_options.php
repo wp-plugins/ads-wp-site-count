@@ -189,9 +189,10 @@ class adswsc_clsSettingsPage
             $temp['Counter'] = absint( $input['Counter'] );
 		}
 
-        if ( isset( $input['Reset'] ) ){
+        if ( isset( $input['Reset'] ) )
             $DoReset = ($input['Reset'] == 'on' ? 'on' : '' );
-		}
+		else
+			$DoReset = '';
 
 		// TinyTcOn
         $temp['TinyTcOn'] = ($input['TinyTcOn'] == 'on' ? 'on' : '' );
@@ -229,9 +230,10 @@ class adswsc_clsSettingsPage
 				__('only 30 sec. to 1 hour supported on cyle time', ADS_TEXT_DOMAIN), 'error');
 				
 		//cleanup
-        if ( isset( $input['CleanupNow'] ) ){
+        if ( isset( $input['CleanupNow'] ) )
             $DoCleanup = ($input['CleanupNow'] == 'on' ? 'on' : '' );
-		}
+		else
+			$DoCleanup = '';
 		$t = 0;		
         if( isset( $input['CleanupD'] ) ){
             $t += absint($input['CleanupD'])*24*3600;
@@ -242,7 +244,6 @@ class adswsc_clsSettingsPage
 
 		if ($t >= (6*24*3600) && $t <= (9*30*24*3600) ) {
 			$temp['CleanupTime'] = $t;
-			$temp['Cleanup'] = time() + $t;
 		} else {
 			add_settings_error('main',  ' ' , 
 				sprintf(__('( Enter cleanup interval from 6 days to 9 months )', ADS_TEXT_DOMAIN).'<br>' ));
@@ -279,6 +280,7 @@ class adswsc_clsSettingsPage
 
 		if ( $DoCleanup == 'on' ) {
 			adswsc_CleanUp($temp['DeleteTime']);
+			$temp['Cleanup'] = time() + $t;
 			add_settings_error('main',  ' ' , __(' ( outdated hits were cleaned )', ADS_TEXT_DOMAIN).'<br>', 'updated');
 		}
 		return $temp;

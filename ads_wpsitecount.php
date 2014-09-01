@@ -5,13 +5,13 @@ Plugin URI: www.ad-soft.ch/wpsitecount
 Author: ad-software
 Author URI: http://ad-soft.ch
 Description: Count the page hit from each ip and display a counter into widget or page.
-Version: 1.0.7
+Version: 1.0.8
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: Wp Site Count, ad-software, Display Site Counter
 Text Domain: ads_wpsitecount
 Domain path: /lang
-Date : 2014/08/26
+Date : 2014/09/01
 
 Copyright 2014  ad-software andré
 contact me at www.ad-soft.ch/support
@@ -36,21 +36,21 @@ if ( WP_DEBUG ) error_reporting(-1); else error_reporting(0);
 //=================================
 //Constants
 //=================================
-if (!defined('ADS_HOME_URL')) 			define('ADS_HOME_URL','http://www.ad-soft.ch/wpplugins');
-if (!defined('ADS_PAGEFILE')) 			define('ADS_PAGEFILE', 'adsPage'); 
-if (!defined('ADS_PLUGIN_DIR')) 		define('ADS_PLUGIN_DIR', plugin_dir_path(__FILE__)); 
-if (!defined('ADS_COUNTER_DIR')) 		define('ADS_COUNTER_DIR', ADS_PLUGIN_DIR.'counters/'); 
-if (!defined('ADS_STYLE_DIR')) 			define('ADS_STYLE_DIR', plugins_url( '/css/' , __FILE__ )); 
-if (!defined('ADS_LANG_DIR')) 			define('ADS_LANG_DIR', '/lang/');
-if (!defined('ADS_TEXT_DOMAIN')) 		define('ADS_TEXT_DOMAIN','ads_wpsitecount'); 
-if (!defined('ADS_OPTIONS_SHORTCODE')) 	define('ADS_OPTIONS_SHORTCODE', 'adswsc_Shortcode');
-if (!defined('ADS_OPTIONS_GENERAL')) 	define('ADS_OPTIONS_GENERAL', 'adswsc_General');
-if (!defined('ADS_OPTIONS_RANDOM')) 	define('ADS_OPTIONS_RANDOM', 'adswsc_Random');
-if (!defined('ADS_PLUGIN_NAME')) 		define('ADS_PLUGIN_NAME', 'ADS-WpSiteCount');
-if (!defined('ADS_PLUGIN_NAMESC')) 		define('ADS_PLUGIN_NAMESC', 'ads-wpsitecount');
-if (!defined('ADS_PLUGIN_NAMETM')) 		define('ADS_PLUGIN_NAMETM', 'adswsc_sc');
-if (!defined('ADS_CSSC_PATH')) 			define('ADS_CSSC_PATH', plugins_url( '/css/adswsc.css' , __FILE__ ));
-if (!defined('ADS_JSSC_PATH')) 			define('ADS_JSSC_PATH', plugins_url( '/includes/ads_shortcode.js.php' , __FILE__ ));
+if (!defined('ADS_HOME_URL'))	define('ADS_HOME_URL','http://www.ad-soft.ch/wpplugins');
+if (!defined('ADS_PAGEFILE'))	define('ADS_PAGEFILE', 'adsPage'); 
+if (!defined('ADS_PLUGIN_DIR'))	define('ADS_PLUGIN_DIR', plugin_dir_path(__FILE__)); 
+if (!defined('ADS_COUNTER_DIR'))	define('ADS_COUNTER_DIR', ADS_PLUGIN_DIR.'counters/'); 
+if (!defined('ADS_STYLE_DIR'))	define('ADS_STYLE_DIR', plugins_url( '/css/' , __FILE__ )); 
+if (!defined('ADS_LANG_DIR'))	define('ADS_LANG_DIR', '/lang/');
+if (!defined('ADS_TEXT_DOMAIN'))	define('ADS_TEXT_DOMAIN','ads_wpsitecount'); 
+if (!defined('ADS_OPTIONS_SHORTCODE'))	define('ADS_OPTIONS_SHORTCODE', 'adswsc_Shortcode');
+if (!defined('ADS_OPTIONS_GENERAL'))	define('ADS_OPTIONS_GENERAL', 'adswsc_General');
+if (!defined('ADS_OPTIONS_RANDOM'))	define('ADS_OPTIONS_RANDOM', 'adswsc_Random');
+if (!defined('ADS_PLUGIN_NAME'))	define('ADS_PLUGIN_NAME', 'ADS-WpSiteCount');
+if (!defined('ADS_PLUGIN_NAMESC'))	define('ADS_PLUGIN_NAMESC', 'ads-wpsitecount');
+if (!defined('ADS_PLUGIN_NAMETM'))	define('ADS_PLUGIN_NAMETM', 'adswsc_sc');
+if (!defined('ADS_CSSC_PATH'))	define('ADS_CSSC_PATH', plugins_url( '/css/adswsc.css' , __FILE__ ));
+if (!defined('ADS_JSSC_PATH'))	define('ADS_JSSC_PATH', plugins_url( '/includes/ads_shortcode.js.php' , __FILE__ ));
 
 //=================================
 //Load Widget
@@ -63,7 +63,6 @@ if (!class_exists('adswsc_clsShortCode') ) require_once(plugin_dir_path(__FILE__
 //=================================
 if( is_admin() ) require_once(plugin_dir_path(__FILE__).'includes/ads_options.php');
 if( is_admin() ) require_once(plugin_dir_path(__FILE__).'includes/ads_dashwidget.php');
-
 
 //=================================
 function adswsc_GetOptions($settings, $default = false) {
@@ -136,7 +135,7 @@ function adswsc_GetViewCounter($count, $options) {
 
 	$general = adswsc_GetOptions( ADS_OPTIONS_GENERAL );
 	$ip = ( $_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : $_SERVER['HTTP_X_FORWARD_FOR'];
-	$Output= "";
+	$output= "";
 
 	if ($count != null)
 		$user_count = $count;
@@ -226,8 +225,9 @@ function adswsc_MakeImage($Count, $Length, $Fill, $Text, $File, $Width) {
 		return trim($m_cnt);
 
 	$num = $len = strlen($m_cnt);
+	$NUMS = array($num); 
 	while ($num >= 0) {
-		$NUMS[$num] = ($m_cnt[$num] == " ") ? 10 : substr($m_cnt,$num,1);
+		$NUMS[$num] = (substr($m_cnt,$num,1) == " ") ? 10 : substr($m_cnt,$num,1);
 		$num--;
 	}
 	$c = 0;
