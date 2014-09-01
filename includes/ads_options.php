@@ -1,7 +1,7 @@
 <?php
 /*
  handles the settings for the WpSiteCount plugin
- Date : 2014/08/26
+ Date : 2014/09/01
  Author: ad-software, André
 */
 
