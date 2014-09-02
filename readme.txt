@@ -20,11 +20,13 @@ This plugin shows a graphic counter of hits from users.
 Display the counter as dynamic image or text on widget or blog.
 You can set many options for hit and cleanup. 
 This plu-in support the German and/or English language.
+Not designed for multi-pages. You can try it without warranty.
 
 Dieses Plugin zeige einen graphischen Zähler mit der anzahl zugriffe auf Ihre Seite. 
 Der Zähler erscheint als dynamische Bild oder als Text in Ihrer Seitenbar oder Blog.
 Sie kön diverse Optionen einstellen.
 Das Plug-In ist auf Deutsch und/oder Englisch verfügbar
+Nicht ausgelegt für Multiseiten. Sie können es versuchen, ohne Garantie.
 
 == Installation ==
 1. Upload Folder `ads-wp-site-count` to the `/wp-content/plugins/` directory
