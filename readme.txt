@@ -16,16 +16,16 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Display a site counter with graphic or text on widget or on blog.
 
 == Description ==
-This plugin shows a graphic counter of hits from users. 
-Display the counter as dynamic image or text on widget or blog.
+This plugin shows a graphic visitor counter. 
+Display the counter as dynamic image or text on sidebar widget or blog.
 You can set many options for hit and cleanup. 
-This plu-in support the German and/or English language.
+This plugin supports German and/or English language.
 Not designed for multi-pages. You can try it without warranty.
 
-Dieses Plugin zeige einen graphischen Zähler mit der anzahl zugriffe auf Ihre Seite. 
-Der Zähler erscheint als dynamische Bild oder als Text in Ihrer Seitenbar oder Blog.
-Sie kön diverse Optionen einstellen.
-Das Plug-In ist auf Deutsch und/oder Englisch verfügbar
+Dieses Plugin zeige einen graphischen Besucher Zähler. 
+Der Zähler erscheint als dynamische Bild oder als Text in Ihrer Seitenleiste oder im Blog.
+Sie können diverse Optionen einstellen.
+Das Plugin ist auf Deutsch und/oder Englisch verfügbar.
 Nicht ausgelegt für Multiseiten. Sie können es versuchen, ohne Garantie.
 
 == Installation ==
