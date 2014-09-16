@@ -313,7 +313,7 @@ class adswsc_clsSettingsPage
 		printf('<br>'.__('Example (copy & paste), white-space are removed on search:',ADS_TEXT_DOMAIN).'<br>'.
 				'Google, msnbot, Rambler, Yahoo, AbachoBOT, Accoona, AcoiRobot, ASPSeek, CrocCrawler,'.
 				' Dumbot, FAST-WebCrawler, GeonaBot, Gigabot, Lycos, MSRBOT, Scooter, Altavista, IDBot,'.
-				' eStyle, Scrubby, facebookexternalhit, bot');
+				' eStyle, Scrubby, facebookexternalhit, bot, robot');
     }
 
     public function callback_counter()

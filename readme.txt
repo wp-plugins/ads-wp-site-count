@@ -1,11 +1,11 @@
 === Plugin Name ===
 Plugin Name: ADS-WP SITE COUNT Plugin
-Version: 1.0.8
+Version: 1.0.9
 URI: http://www.ad-soft.ch/wpplugins
 Tags: site counter, counter widget, hit counter, graphic counter, short code site counter
 Requires at least: 3.1.0
 Tested up to: 4.0.0 
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 PHP Version: 5.2.9
 MySql Version: 5.0.91-community
 Author: adespont
@@ -77,6 +77,11 @@ change style on css please.
 6. TinyMce shortcode button popup
 
 == Changelog ==
+= 1.0.9 - 2014-09-16 =
+* correction code on widget (sorry) 
+* random image wrong parameter
+* fail safe and double set at widget before (sorry)
+
 = 1.0.8 - 2014-09-01 =
 * remove reset cleanup time on settings after save, reset time when cleaned now.
 * correction variable definition

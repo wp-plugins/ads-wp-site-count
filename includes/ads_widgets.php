@@ -1,14 +1,12 @@
 <?php
 /*
  Widget for the WpSiteCount plugin
- Date : 2014/08/26
+ Date : 2014/09/16
  Author: ad-software, André
 */
 
 defined('ABSPATH') OR exit;
-
 if ( WP_DEBUG ) error_reporting(-1);
-
 add_action( 'widgets_init', 'adswsc_load_widget' );
 
 // Register and load the widget
@@ -38,13 +36,12 @@ class adswsc_clsWidget extends WP_Widget {
 		$options['whunit'] = apply_filters( 'widget_whunit', $instance['whunit'] );
 		$options['image'] = apply_filters( 'widget_image', $instance['image'] );
 		$options['align'] = apply_filters( 'widget_align', $instance['align'] );
-		$options['length'] = apply_filters( 'widget_before', $instance['length'] );
+		$options['length'] = apply_filters( 'widget_length', $instance['length'] );
 		$options['fill'] = apply_filters( 'widget_fill', $instance['fill'] );
 		$options['text'] = apply_filters( 'widget_text', $instance['text'] );
 		$options['block'] = apply_filters( 'widget_block', $instance['block'] );
 		$options['randimg'] = apply_filters( 'widget_randimg', $instance['randimg'] );
 		$options['imgmaxw'] = apply_filters( 'widget_imgmaxw', $instance['imgmaxw'] );
-		echo $args['before_widget'];
 
 		switch ($options['randimg']) {
 			case 1: // hour
@@ -95,18 +92,17 @@ class adswsc_clsWidget extends WP_Widget {
 			default: 
 				break;
 		}
-
 		echo $args['before_widget'];
 		if ( ! empty( $options['title'] ) )
 			echo $args['before_title'] . $options['title'] . $args['after_title'];
-		echo adswsc_GetViewCounter(null, $options); 
+		echo adswsc_GetViewCounter(null, $options);
 		echo $args['after_widget'];
 	}
 		
-	private function get_randomImage($standard) {
+	private function get_randomImage() {
 		$Directory = ADS_COUNTER_DIR.'*.jpg';
 		$FILES = glob($Directory);
-		return (sizeof($FILES) == 0) ? $standard : basename($FILES[rand(0, sizeof($FILES)-1)]);
+		return basename($FILES[rand(0, sizeof($FILES)-1)]);
 	}		
 
 	

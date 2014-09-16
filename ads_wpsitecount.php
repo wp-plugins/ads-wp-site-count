@@ -5,13 +5,13 @@ Plugin URI: www.ad-soft.ch/wpsitecount
 Author: ad-software
 Author URI: http://ad-soft.ch
 Description: Count the page hit from each ip and display a counter into widget or page.
-Version: 1.0.8
+Version: 1.0.9
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: Wp Site Count, ad-software, Display Site Counter
 Text Domain: ads_wpsitecount
 Domain path: /lang
-Date : 2014/09/01
+Date : 2014/09/16
 
 Copyright 2014  ad-software andré
 contact me at www.ad-soft.ch/support
@@ -88,7 +88,7 @@ function adswsc_GetOptions($settings, $default = false) {
 		case ADS_OPTIONS_SHORTCODE:
 			if (!is_array( $options ) || $default==true) {
 				$options = array(
-					'count' => 2014,
+					'count' => 0,
 					'text' => 'off',
 					'fill' => 'off',
 					'align' => 'none',
@@ -99,7 +99,7 @@ function adswsc_GetOptions($settings, $default = false) {
 					'width' => 165,
 					'height' => '',
 					'whunit' => 'px',
-					'imgmaxw' => 350,
+					'imgmaxw' => 250,
 					'block' => ''
 				);
 				$Directory = ADS_COUNTER_DIR.'*.jpg';
@@ -118,6 +118,7 @@ function adswsc_GetOptions($settings, $default = false) {
 				$FILES = glob($Directory);
 				if (sizeof($FILES) > 0)
 					$options['image'] = basename($FILES[0]);
+					
 			}	
 			break;
 		default: 
