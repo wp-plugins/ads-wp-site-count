@@ -78,7 +78,7 @@ change style on css please.
 
 == Changelog ==
 = 1.0.10 - 2014-10-28 =
-* Correction wrong cleanup Time on options
+* correction wrong cleanup time on options
 
 = 1.0.9 - 2014-09-16 =
 * correction code on widget (sorry) 
