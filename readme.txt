@@ -4,7 +4,7 @@ Version: 1.0.10
 URI: http://www.ad-soft.ch/wpplugins
 Tags: site counter, counter widget, hit counter, graphic counter, short code site counter
 Requires at least: 3.1.0
-Tested up to: 4.0.0 
+Tested up to: 4.1.0 
 Stable tag: 1.0.10
 PHP Version: 5.2.9
 MySql Version: 5.0.91-community
@@ -78,7 +78,7 @@ change style on css please.
 
 == Changelog ==
 = 1.0.10 - 2014-10-28 =
-* correction wrong cleanup time on options
+* Correction wrong cleanup Time on options
 
 = 1.0.9 - 2014-09-16 =
 * correction code on widget (sorry) 
