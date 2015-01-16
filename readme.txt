@@ -32,8 +32,8 @@ Nicht ausgelegt für Multiseiten. Sie können es versuchen, ohne Garantie.
 1. Upload Folder `ads-wp-site-count` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Configure the Settings for cleanup IP db entrys when you need.
-4. Place Widget ADS-WpSiteCount on your sidebar
-5. or add [ads-wpsitecount <args, ...>] in your templates, set params on <args, ...> 
+4. Place Widget ADS-WpSiteCount on your sidebar (NOT the Shortcode)
+5. or add [ads-wpsitecount <args, ...>] in your templates/pages/blogs, set params on <args, ...> 
 
 == Frequently Asked Questions ==
 = How can i add a shortcode into my blog page? =
