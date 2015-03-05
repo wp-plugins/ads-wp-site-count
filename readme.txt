@@ -1,6 +1,6 @@
 === Plugin Name ===
 Plugin Name: ADS-WP SITE COUNT Plugin
-Version: 1.0.10
+Version: 1.0.11
 URI: http://www.ad-soft.ch/wpplugins
 Tags: site counter, counter widget, hit counter, graphic counter, short code site counter
 Requires at least: 3.1.0
