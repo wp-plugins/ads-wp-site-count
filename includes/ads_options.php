@@ -1,7 +1,7 @@
 <?php
 /*
  handles the settings for the WpSiteCount plugin
- Date : 2014/10/2
+ Date : 2015/03/05
  Author: ad-software, André
 */
 
@@ -245,14 +245,14 @@ class adswsc_clsSettingsPage
 			$t += absint($input['CleanupM'])*30*24*3600;
 		}
 
-		if ($t >= (6*24*3600) && $t <= (9*30*24*3600) ) {
+		if ($t >= (24*3600) && $t <= (6*30*24*3600) ) {
 			$temp['CleanupTime'] = $t;
 		} else {
 			add_settings_error('main',  ' ' , 
-				sprintf(__('( Enter cleanup interval from 6 days to 9 months )', ADS_TEXT_DOMAIN).'<br>' ));
+				sprintf(__('( Enter cleanup interval from 1 days to 6 months )', ADS_TEXT_DOMAIN).'<br>' ));
 		}
 		
-		//delete
+		//delete IP
 		$t = 0;
 		if( isset( $input['DeleteDay'] ) ){
 			$t += absint($input['DeleteDay'])*24*3600;
@@ -261,11 +261,11 @@ class adswsc_clsSettingsPage
 			$t += absint($input['DeleteMon'])*30*24*3600;
 		}
 		
-		if ($t >= (24*3600) && $t <= (6*30*24*3600) )
+		if ($t >= (6*24*3600) && $t <= (9*30*24*3600) )
 			$temp['DeleteTime'] = $t;
 		else
 			add_settings_error('validate_general', esc_attr( '' ), 
-				__('only 1 day to 6 months supported on cleanup', ADS_TEXT_DOMAIN), 'error');
+				__('only 6 day to 9 months supported on cleanup', ADS_TEXT_DOMAIN), 'error');
 			
 		// bots
 		if( isset( $input['Bots'] ) ){

@@ -4,8 +4,8 @@ Version: 1.0.10
 URI: http://www.ad-soft.ch/wpplugins
 Tags: site counter, counter widget, hit counter, graphic counter, short code site counter
 Requires at least: 3.1.0
-Tested up to: 4.1.0 
-Stable tag: 1.0.10
+Tested up to: 4.1.1 
+Stable tag: 1.0.11
 PHP Version: 5.2.9
 MySql Version: 5.0.91-community
 Author: adespont
@@ -77,6 +77,9 @@ change style on css please.
 6. TinyMce shortcode button popup
 
 == Changelog ==
+= 1.0.11 - 2015-03-05 =
+* Correction changed cleanup/IP min/max Value on options
+
 = 1.0.10 - 2014-10-28 =
 * Correction wrong cleanup Time on options
 
