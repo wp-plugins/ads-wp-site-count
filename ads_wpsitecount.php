@@ -5,7 +5,7 @@ Plugin URI: www.ad-soft.ch/wpsitecount
 Author: ad-software
 Author URI: http://ad-soft.ch
 Description: Count the page hit from each ip and display a counter into widget or page.
-Version: 1.0.11
+Version: 1.0.12
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: Wp Site Count, ad-software, Display Site Counter
