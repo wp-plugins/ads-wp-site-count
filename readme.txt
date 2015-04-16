@@ -78,7 +78,7 @@ change style on css please.
 
 == Changelog ==
 = 1.0.12 - 2015-04-16 =
-* unknown copyright of nixie ground pictures, pictures removed
+* It is not clear whether the nixi background images are copy protected or not. That's why we have these removed until further notice.
 
 = 1.0.11 - 2015-03-05 =
 * Correction changed cleanup/IP min/max Value on options
