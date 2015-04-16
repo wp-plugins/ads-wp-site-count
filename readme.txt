@@ -77,6 +77,9 @@ change style on css please.
 6. TinyMce shortcode button popup
 
 == Changelog ==
+= 1.0.12 - 2015-04-16 =
+* unknown copyright of nixie ground pictures, pictures removed
+
 = 1.0.11 - 2015-03-05 =
 * Correction changed cleanup/IP min/max Value on options
 
